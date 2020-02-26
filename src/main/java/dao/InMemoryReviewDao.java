@@ -37,6 +37,10 @@ public class InMemoryReviewDao implements ReviewDao {
 
     @Override
     public List<Review> findByCourseId(int courseId) {
-        return Collections.unmodifiableList(reviewMap.get(courseId));
+        List<Review> reviews = reviewMap.get(courseId);
+        if (reviews == null) {
+            reviews = new ArrayList<>();
+        }
+        return Collections.unmodifiableList(reviews);
     }
 }
